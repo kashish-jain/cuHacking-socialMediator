@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-const API = 'https://hn.algolia.com/api/v1/search?query=';
+const API = 'http://127.0.0.1:5000/';
 
 class App extends Component {
   constructor(props) {
@@ -14,12 +14,11 @@ class App extends Component {
     // fetch(API)
     //   .then(response => response.json())
     //   .then(data => this.setState({ hits: data.hits }));
-    fetch('http://127.0.0.1:5000/')
+    fetch(API)
     .then(function(response) {
         console.log(response.json())
         return response;
     })
-    console.log("test")
   }
 
   render() {

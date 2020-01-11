@@ -7,25 +7,33 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hits: [],
+      apiInfo: 'default'
     };
   }
   componentDidMount() {
     // fetch(API)
     //   .then(response => response.json())
     //   .then(data => this.setState({ hits: data.hits }));
+    const that = this
     fetch(API)
     .then(function(response) {
-        console.log(response.json())
-        return response;
+      return response.json();
     })
+    .then(function(jsonData) {
+        return JSON.stringify(jsonData);
+    })
+    .then(function(jsonStr) {
+        that.setState({ apiInfo: jsonStr });
+    });
+    console.log(this.state)
   }
 
   render() {
-    const { hits } = this.state;
+    let result = this.state.apiInfo
+    console.log(result)
     return (
       <div className="App">
-        <h1 id="display">Display some text</h1>
+        <h1 id="display">Display some text {result}</h1>
       </div>
     );
   }

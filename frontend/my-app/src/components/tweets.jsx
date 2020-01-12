@@ -5,8 +5,7 @@ let Tweets = (props) => {
         let tweet;
         let allTweets = [];
         Object.keys(props.tweets).forEach(function (item) {
-            console.log("item ", item);
-            tweet = <IndividualTweet tweet = {props.tweets[item]} key={item} />
+            tweet = <IndividualTweet tweet = {props.tweets[item]["text"]} key={item} />
             allTweets.push(tweet);
         });
 

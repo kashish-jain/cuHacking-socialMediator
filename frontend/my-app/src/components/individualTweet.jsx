@@ -14,7 +14,7 @@ let IndividualTweet = (props) => {
             
             <Card style={{ width: '34rem', display:'inline-flex', fontSize:'1.4rem', margin:'30px' }}>
                 <Card.Body>
-                    <Card.Title style={{fontSize:"1.5rem"}}>Tweet 1<img src={twitter} alt="" srcset="" style={{margin:"0",float:"right"}}/></Card.Title>
+                    <Card.Title style={{fontSize:"1.5rem"}}><img src={twitter} alt="" srcset="" style={{margin:"0",float:"right"}}/></Card.Title>
                     <Card.Subtitle className="mb-2 text-muted" style={{fontSize:'1.2rem'}}>@Tweets</Card.Subtitle>
                     <Card.Text>
                     {props.tweet}

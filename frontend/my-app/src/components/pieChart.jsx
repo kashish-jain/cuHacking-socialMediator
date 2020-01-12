@@ -38,9 +38,19 @@ class PieChart extends Component {
             }]
         };
         return (
-            <div style= {{width: "40vw"}}>
+            <div style={{ width: "40vw" }}>
                 {/* <h2>Pie Example</h2> */}
-                <Pie data={data} />
+                <Pie data={data}
+                    options={{
+                        maintainAspectRatio: true,
+                        title: {
+                            display: true,
+                            text: "Categorization",
+                            fontSize: 25,
+                            position: 'bottom'
+                        }
+                    }}
+                />
             </div>
         );
     }

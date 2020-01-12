@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BarChart from './barChart';
+import BarChart from './DoughnutChart';
 import LineChart from './lineChart'
 
 class TwitterCharts extends Component {

@@ -34,7 +34,7 @@ class App extends Component {
     console.log(result)
     return (
       <div className="App">
-        <h1 id="display">Display some text {result}</h1>
+        {/* <h1 id="display">{result}</h1> */}
         <MainComponent/>
       </div>
     );

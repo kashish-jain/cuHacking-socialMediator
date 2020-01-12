@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+}
+h1{
+    margin: 0;
+    border-bottom: 2px solid grey;
+    padding: 8px;
+}
+img{
+    /* display:inline-flex; */
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+    
+}
+.bank-img{
+    display: inline-block;   
+    position: absolute;
+}
+.page-title{
+    display: inline;
+}

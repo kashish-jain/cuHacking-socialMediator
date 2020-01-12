@@ -39,7 +39,6 @@ class TwitterCharts extends Component {
 
     constructor(props) {
         super(props);
-        console.log("from twittercharts", this.props.tweets);
     }
     render() {
         let scores = getScores(this.props.tweets);

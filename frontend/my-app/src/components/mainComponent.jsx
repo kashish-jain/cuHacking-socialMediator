@@ -6,7 +6,6 @@ import Alerts from "./alerts";
 import SimpleMap from './simpleMap';
 
 function graphObjects(bigJson) {
-    console.log("bigJSON ", bigJson);
     let newObject = JSON.parse(bigJson);
     const values = Object.values(newObject);
     // Returning array of JSON Objects
@@ -14,11 +13,13 @@ function graphObjects(bigJson) {
 }
 
 function getLocations(graphObj) {
+    console.log("graphObj ", graphObj);
     let locationsArray = [];
     graphObj.forEach((item) => {
         let loca = item["geolocation"];
         locationsArray.push(loca);
     });
+    console.log("locationsArray ", locationsArray);
     return locationsArray;
 }
 
@@ -50,7 +51,7 @@ class MainComponent extends Component {
                     <Tweets tweets={graphObj} />
                     <Alerts />
                     <Post />
-                    {/* <SimpleMap locations={locationsArray}/> */}
+                    <SimpleMap locations={locationsArray}/>
                 </div>
             </div>
         );

@@ -6,9 +6,6 @@ class DoughnutChart extends Component {
         super(props);
         let data = [];
         data.push(this.props.technical, this.props.nonTechnical);
-        console.log("technical ", this.props.technical);
-        console.log("nonTechnical ", this.props.nonTechnical);
-        console.log("data ", data); 
         this.state = {
             chartData: {
                 labels: ["Techniacal", "Non-Technical"],

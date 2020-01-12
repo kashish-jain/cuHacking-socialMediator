@@ -77,8 +77,8 @@ def index():
 @app.route('/reviews', methods = ['POST'])
 def email():
     if request.method == 'POST':
-        data = request.body
-        print(request)
+        # data = request.body
+        print(request.json["data"])
         # db.execute("INSERT INTO reviews (username, review) VALUES (:username, :review)",
         #     {"username": "test", "review": "test123"})
         # db.commit()

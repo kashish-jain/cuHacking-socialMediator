@@ -26,7 +26,7 @@ class Post extends Component {
       body: this.state.body
     };
     axios
-      .post("http://127.0.0.1:5000/reviews';", {
+      .post("http://127.0.0.1:5000/reviews", {
         headers: {
             'Content-Type': 'application/json',
         },data

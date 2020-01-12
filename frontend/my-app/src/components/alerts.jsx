@@ -45,6 +45,8 @@ class Alerts extends Component {
 
     return (
       <div>
+        <h1 style={{ marginLeft: "1%" }}>Alerts triggered</h1>
+
         {alerts_arr}
       </div>
     );

@@ -35,6 +35,32 @@ function countNonTechnical(values) {
     return count;
 }
 
+function countCat(values) {
+    let software = 0;
+    let none = 0;
+    let calls = 0;
+    let atm = 0;
+    let hours = 0;
+    Object.keys(values).forEach(function (item) {
+        let tweet = values[item]["label"];
+        if (tweet === "software") {
+            ++software;
+        } else if (tweet === "none") {
+            ++none;
+        } else if (tweet === "calls") {
+            ++calls;
+        } else if (tweet === "atm") {
+            ++atm;
+        } else if (tweet === "hours") {
+            ++hours;
+        }
+    });
+    let finals = [];
+    finals.push(software, none, calls, atm, hours);
+    return finals;
+}
+
+
 class TwitterCharts extends Component {
 
     constructor(props) {
@@ -44,12 +70,15 @@ class TwitterCharts extends Component {
         let scores = getScores(this.props.tweets);
         let dates = getDates(this.props.tweets);
         let nonTechnical = countNonTechnical(this.props.tweets);
+        let cat = countCat(this.props.tweets);
+        console.log("catcat    ", cat);
         return (
-            <div className="main-chart" style={{ display: "flex",   flexWrap: "wrap"
-        }}>
-                <DoughnutChart technical={this.props.tweets.length - nonTechnical} nonTechnical = {nonTechnical} />
+            <div className="main-chart" style={{
+                display: "flex", flexWrap: "wrap"
+            }}>
+                <DoughnutChart technical={this.props.tweets.length - nonTechnical} nonTechnical={nonTechnical} />
                 <LineChart scores={scores} dates={dates} />
-                <PieChart data = {[3,1,0,1,2]} />
+                <PieChart data={cat} />
             </div>
         );
     }

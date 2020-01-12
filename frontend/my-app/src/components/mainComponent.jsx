@@ -38,11 +38,11 @@ class MainComponent extends Component {
                         style={{
                             textAlign: "center",
                             fontSize: "50px",
-                            backgroundColor: "rgb(227, 251, 251)",
-                            letterSpacing: "2px"
+                            letterSpacing: "2px",
+                            fontWeight: "bolder"
                         }}
                     >
-                        RBC Customer Review
+                        Social Mediator
           </h1>
                 </div>
 
@@ -50,8 +50,8 @@ class MainComponent extends Component {
                     <TwitterCharts tweets={graphObj} />
                     <Tweets tweets={graphObj} />
                     <Alerts />
-                    <Post />
                     <SimpleMap locations={locationsArray}/>
+                    <Post />
                 </div>
             </div>
         );

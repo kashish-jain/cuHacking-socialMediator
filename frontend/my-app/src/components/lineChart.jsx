@@ -12,13 +12,12 @@ class LineChart extends Component {
                 labels: dates,
                 datasets: [
                     {
-                        label: 'Customer',
+                        label: "Customer's sentiment (1 = happiest, -1=sad)",
                         data: scores,
                         backgroundColor:'rgb(222, 221, 242)',
                         borderColor:'rgb(170, 170, 171)',
                         borderWidth: 1.5
-                        
-                        
+                    
                     }
                 ]
                 
@@ -34,7 +33,7 @@ class LineChart extends Component {
                         maintainAspectRatio: true,
                         title:{
                             display:true,
-                            text:"Customer's Sentiment",
+                            text:"Sentimental Analysis",
                             fontSize:25,
                             position:'bottom'
                         }

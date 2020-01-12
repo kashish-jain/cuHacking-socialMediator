@@ -14,6 +14,7 @@ from text_classification import Tweet
 
 slackURL = "https://slack.com/api/chat.postMessage"
 slackToken = "xoxp-593464896096-892373395681-902891260848-4959e8e58580fa5296dfc4064b71eb34"
+geoToken = "pk.eyJ1IjoiZGF0bG9pOTUiLCJhIjoiY2p5ODFmczRxMDVsMDNwbXFlZzJ1dXZ3cSJ9.mXpLHQG1MdIjH--fzGKvtQ&limit=1"
 
 headers = {
   "Content-Type": "application/json",
@@ -89,11 +90,8 @@ def email():
 @app.route('/coordinates/<string:address>', methods = ['GET'])
 def getGeoCoordinate(address):
     # Check for environment variable
-    if not os.getenv("GEO_TOKEN"):
-        raise RuntimeError("GEO_TOKEN is not set")
-    token = os.getenv("GEO_TOKEN")
     result = requests.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ address 
-            + '.json?access_token=' + token)
+            + '.json?access_token=' + geoToken)
     result = json.loads(result.text)
     return jsonify(result["features"][0]["geometry"]["coordinates"])
 

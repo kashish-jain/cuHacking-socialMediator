@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TwitterCharts from "./twitterCharts";
-
+import Post from './post';
 import Tweets from "./tweets";
 
 function graphObjects(bigJson) {
@@ -37,6 +37,7 @@ class MainComponent extends Component {
                 <div>
                     <TwitterCharts tweets={graphObj} />
                     <Tweets tweets={graphObj} />
+                    <Post />
                 </div>
             </div>
         );

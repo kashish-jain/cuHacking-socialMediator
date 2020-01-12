@@ -22,8 +22,8 @@ class Post extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const data = {
-      title: this.state.title,
-      body: this.state.body
+      name: this.state.title,
+      alert: this.state.body
     };
     axios
       .post("http://127.0.0.1:5000/reviews", {
@@ -40,11 +40,11 @@ class Post extends Component {
       <div className="post" style={{height: "50vw", width: "50vh"}}>
         <form className="post" onSubmit={this.handleSubmit}>
           <input
-            placeholder="Title" value={this.state.title}
+            placeholder="Your Name" value={this.state.title}
             onChange={this.onTitleChange} required
           />
           <textarea
-            placeholder="Body" value={this.state.body}
+            placeholder="Alert" value={this.state.body}
             onChange={this.onBodyChange} required
           />
           <button type="submit">Create Post</button>

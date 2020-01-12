@@ -6,11 +6,45 @@ from google.cloud.language_v1 import enums
 TECH = ['/Internet', '/Autos', '/Computers']
 class Tweet(object):
     def __init__(self, tweet_text):
-        self.tweet_type = ''
+        self.tweet_type = 'Non-technical'
         self.sentiment_score = 0
         self.tweet_text = tweet_text
-        self.sample_classify_text(tweet_text)
+        self.classify(tweet_text)
         self.analyze(tweet_text)
+    
+    def classify(self, text, verbose=True):
+        """Classify the input text into categories. """
+        try:
+            language_client = language.LanguageServiceClient()
+
+            document = language.types.Document(
+                content=text,
+                type=language.enums.Document.Type.PLAIN_TEXT)
+            response = language_client.classify_text(document)
+            categories = response.categories
+
+            result = {}
+
+            for category in categories:
+                # Turn the categories into a dictionary of the form:
+                # {category.name: category.confidence}, so that they can
+                # be treated as a sparse vector.
+                result[category.name] = category.confidence
+
+            if verbose:
+                print(text)
+                for category in categories:
+                    print(u'=' * 20)
+                    print(u'{:<16}: {}'.format('category', category.name))
+                    print(u'{:<16}: {}'.format('confidence', category.confidence))
+                    if category.name.split()[0] in TECH:
+                        self.tweet_type = 'Technical'
+                    else:
+                        self.tweet_type = 'Non-technical'
+
+            return result
+        except Exception as e:
+            return
 
     def sample_classify_text(self, text_content):
         """
@@ -65,11 +99,14 @@ class Tweet(object):
 
     def analyze(self, content):
         """Run a sentiment analysis request on text within a passed filename."""
-        client = language.LanguageServiceClient()
+        try:
+            client = language.LanguageServiceClient()
 
-        document = types.Document(
-            content=content,
-            type=enums.Document.Type.PLAIN_TEXT)
-        annotations = client.analyze_sentiment(document=document)
-        score = annotations.document_sentiment.score
-        self.print_result(annotations)
+            document = types.Document(
+                content=content,
+                type=enums.Document.Type.PLAIN_TEXT)
+            annotations = client.analyze_sentiment(document=document)
+            score = annotations.document_sentiment.score
+            self.print_result(annotations)
+        except Exception as e:
+            return 

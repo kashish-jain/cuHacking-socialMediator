@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TwitterCharts from "./twitterCharts";
 import Post from './post';
 import Tweets from "./tweets";
+import Alerts from "./alerts";
+import SimpleMap from './simpleMap';
 
 function graphObjects(bigJson) {
     console.log("bigJSON ", bigJson);
@@ -18,7 +20,6 @@ class MainComponent extends Component {
     }
     render() {
         let graphObj = graphObjects(this.props.bigData);
-        console.log("graphObj", graphObj);
         return (
             <div className="main">
                 <div className="page-title">
@@ -37,7 +38,9 @@ class MainComponent extends Component {
                 <div>
                     <TwitterCharts tweets={graphObj} />
                     <Tweets tweets={graphObj} />
+                    <Alerts />
                     <Post />
+                    <SimpleMap/>        
                 </div>
             </div>
         );

@@ -1,6 +1,6 @@
 import os
 import requests, json
-from flask import Flask, session, render_template, request, jsonify
+from flask import Flask, session, render_template, request, jsonify, Response
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -74,18 +74,21 @@ def index():
     # print(tweets_dict)
     return tweets_dict
 
-@app.route('/reviews', methods = ['POST'])
+@app.route('/reviews', methods = ['GET', 'POST'])
 def email():
     if request.method == 'POST':
-        # data = request.body
-        print(request.json["data"])
-        # db.execute("INSERT INTO reviews (username, review) VALUES (:username, :review)",
-        #     {"username": "test", "review": "test123"})
-        # db.commit()
-    return "good"
+        data = request.json["data"]
+        db.execute("INSERT INTO reviews (username, review) VALUES (:username, :review)",
+            {"username": data["name"], "review": data["alert"]})
+        db.commit()
+        return "", "200"
+    else:
+        alert = db.execute("SELECT * FROM reviews").fetchall()
+        return jsonify({'alertList': [dict(row) for row in alert]})
 
-@app.route('/slack', methods = ['POST'])
+@app.route('/slack', methods = ['GET', 'POST'])
 def slackMessage():
     if request.method == 'POST':
         request_json = request.get_json()
         send_message(request_json)
+    

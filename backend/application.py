@@ -33,15 +33,16 @@ labels = {"atm":["atm", "automated teller machine", "machine"], "calls":["call",
 
 def labelling(string):
     string = string.lower()
-    for label in labels:
+    for label in labels.keys():
         for word in labels[label]:
-            if string.find(word):
+            if string.find(word) != -1:
                 return label
     return "none"
 
-def prioritize(score, category, label):
-    if ((label == "none") and (category == "Non-Technical")):
+def prioritize(score, category, label, text):
+    if ((label != "none") and (category != "Non-technical")):
         if (score < -0.5):
+            send_message(text)
             return "high"
         elif (score < 0) :
             return "medium"
@@ -69,7 +70,7 @@ def read_tweet_file():
         tweet_dict["sentiment_score"] = tweet_data.sentiment_score
         tweet_dict["category"] = tweet_data.tweet_type
         tweet_dict["label"] = labelling(tweet_obj["text"])
-        tweet_dict["priority"] = prioritize(tweet_dict["sentiment_score"],tweet_dict["category"],tweet_dict["label"])        
+        tweet_dict["priority"] = prioritize(tweet_dict["sentiment_score"],tweet_dict["category"],tweet_dict["label"], tweet_obj["text"])        
         tweets_dict[str(i)] = tweet_dict
         i = i + 1
         

@@ -12,31 +12,33 @@ class App extends Component {
       apiInfo: 'default'
     };
   }
-  componentDidMount() {
-    // fetch(API)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ hits: data.hits }));
+  componentWillMount() {
     const that = this
     fetch(API)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(jsonData) {
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (jsonData) {
         return JSON.stringify(jsonData);
-    })
-    .then(function(jsonStr) {
+      })
+      .then(function (jsonStr) {
         that.setState({ apiInfo: jsonStr });
-    });
+      });
   }
 
   render() {
-    let result = this.state.apiInfo
-    console.log(result)
-    return (
-      <div className="App">
-        {/* <h1 id="display">{result}</h1> */}
-        <MainComponent/>
+    let main;
+    if (this.state.apiInfo != "default") {
+      main = <div className="App">
+        <MainComponent bigData={this.state.apiInfo} />
       </div>
+    } else {
+      main = <div className="App">
+      Loading
+    </div>
+    }
+    return (
+      main
     );
   }
 }

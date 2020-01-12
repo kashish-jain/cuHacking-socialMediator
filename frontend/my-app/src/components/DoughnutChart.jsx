@@ -8,7 +8,7 @@ class DoughnutChart extends Component {
         data.push(this.props.technical, this.props.nonTechnical);
         console.log("technical ", this.props.technical);
         console.log("nonTechnical ", this.props.nonTechnical);
-        console.log("data ", data);
+        console.log("data ", data); 
         this.state = {
             chartData: {
                 labels: ["Techniacal", "Non-Technical"],
@@ -27,7 +27,7 @@ class DoughnutChart extends Component {
     }
     render() {
         return (
-            <div className="chart" style={{ width: "50vw", padding: "3%" }}>
+            <div className="chart" style={{ width: "40vw", padding: "3%" }}>
                 <Doughnut
                     data={this.state.chartData}
                     options={{

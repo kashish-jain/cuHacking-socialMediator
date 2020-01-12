@@ -7,7 +7,6 @@ class LineChart extends Component {
         super(props);
         let scores = this.props.scores;
         let dates = this.props.dates;
-        console.log("prpos", props.values);
         this.state = {
             chartData: {
                 labels: dates,
@@ -35,7 +34,7 @@ class LineChart extends Component {
                         maintainAspectRatio: true,
                         title:{
                             display:true,
-                            text:'Analyse past days',
+                            text:"Customer's Sentiment",
                             fontSize:25,
                             position:'bottom'
                         }

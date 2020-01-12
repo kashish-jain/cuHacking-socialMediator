@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DoughnutChart from './DoughnutChart';
 import LineChart from './lineChart'
+import PieChart from './pieChart'
+
 
 function getScores(values) {
     let data = [];
@@ -44,9 +46,11 @@ class TwitterCharts extends Component {
         let dates = getDates(this.props.tweets);
         let nonTechnical = countNonTechnical(this.props.tweets);
         return (
-            <div className="main-chart" style={{ display: "flex" }}>
+            <div className="main-chart" style={{ display: "flex",   flexWrap: "wrap"
+        }}>
                 <DoughnutChart technical={this.props.tweets.length - nonTechnical} nonTechnical = {nonTechnical} />
                 <LineChart scores={scores} dates={dates} />
+                <PieChart data = {[3,1,0,1,2]} />
             </div>
         );
     }

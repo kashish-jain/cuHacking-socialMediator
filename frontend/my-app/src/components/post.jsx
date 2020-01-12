@@ -29,7 +29,7 @@ class Post extends Component {
       .post("http://127.0.0.1:5000/reviews';", {
         headers: {
             'Content-Type': 'application/json',
-         data}
+        },data
         })
       .then(res => console.log(res))
       .catch(err => console.log(err));

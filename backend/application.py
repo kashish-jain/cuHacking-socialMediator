@@ -29,6 +29,24 @@ if not os.getenv("DATABASE_URL"):
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+labels = {"atm":["atm", "automated teller machine", "machine"], "calls":["call", "voice", "contact"], "software": ["bug","screen", "breaks", "404", "online", "website", "app"], "hours": ["timing", "closed", "holiday"]}
+
+def labelling(string):
+    string = string.lower()
+    for label in labels:
+        for word in labels[label]:
+            if string.find(word):
+                return label
+    return "none"
+
+def prioritize(score, category, label):
+    if ((label == "none") and (category == "Non-Technical")):
+        if (score < -0.5):
+            return "high"
+        elif (score < 0) :
+            return "medium"
+    return "low"
+
 def read_tweet_file():
     tweets_dict = {}
     file = open("./Twitter/tweets.txt", "r")
@@ -50,6 +68,8 @@ def read_tweet_file():
 
         tweet_dict["sentiment_score"] = tweet_data.sentiment_score
         tweet_dict["category"] = tweet_data.tweet_type
+        tweet_dict["label"] = labelling(tweet_obj["text"])
+        tweet_dict["priority"] = prioritize(tweet_dict["sentiment_score"],tweet_dict["category"],tweet_dict["label"])        
         tweets_dict[str(i)] = tweet_dict
         i = i + 1
         

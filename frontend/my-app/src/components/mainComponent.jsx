@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TwitterCharts from "./twitterCharts";
 import bank from "./bank.png";
 import Tweets from "./tweets";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 class MainComponent extends Component {
   render() {
     let trialJson = {
@@ -23,13 +23,15 @@ class MainComponent extends Component {
               letterSpacing: "2px"
             }}
           >
-            RBC Customer Review{" "}
+            RBC Customer Review
           </h1>
         </div>
 
         <div>
-          <TwitterCharts />
-          <Tweets tweets={trialJson} />
+        <TwitterCharts />
+        <Tweets tweets={trialJson} />
+
+       
         </div>
       </div>
     );

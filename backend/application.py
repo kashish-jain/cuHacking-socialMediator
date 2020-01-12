@@ -74,13 +74,14 @@ def index():
     # print(tweets_dict)
     return tweets_dict
 
-@app.route('/reviews', methods = ['GET'])
+@app.route('/reviews', methods = ['POST'])
 def email():
-    if request.method == 'GET':
-        data = request.form
-        db.execute("INSERT INTO reviews (username, review) VALUES (:username, :review)",
-            {"username": "test", "review": "test123"})
-        db.commit()
+    if request.method == 'POST':
+        data = request.body
+        print(request)
+        # db.execute("INSERT INTO reviews (username, review) VALUES (:username, :review)",
+        #     {"username": "test", "review": "test123"})
+        # db.commit()
     return "good"
 
 @app.route('/slack', methods = ['POST'])

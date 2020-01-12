@@ -86,6 +86,17 @@ def email():
         alert = db.execute("SELECT * FROM reviews").fetchall()
         return jsonify({'alertList': [dict(row) for row in alert]})
 
+@app.route('/coordinates/<string:address>', methods = ['GET'])
+def getGeoCoordinate(address):
+    # Check for environment variable
+    if not os.getenv("GEO_TOKEN"):
+        raise RuntimeError("GEO_TOKEN is not set")
+    token = os.getenv("GEO_TOKEN")
+    result = requests.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ address 
+            + '.json?access_token=' + token)
+    result = json.loads(result.text)
+    return jsonify(result["features"][0]["geometry"]["coordinates"])
+
 @app.route('/slack', methods = ['GET', 'POST'])
 def slackMessage():
     if request.method == 'POST':

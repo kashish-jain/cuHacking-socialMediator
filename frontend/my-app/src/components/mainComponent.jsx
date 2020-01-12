@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TwitterCharts from "./twitterCharts";
 import bank from "./bank.png";
 import Tweets from "./tweets";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 class MainComponent extends Component {
   render() {
     let trialJson = {

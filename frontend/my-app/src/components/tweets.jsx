@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import IndividualTweet from './individualTweet';
 
 let Tweets = (props) => {
-    // const element = <FontAwesomeIcon icon={faTwitter} />
 
         let tweet;
         let allTweets = [];
         Object.keys(props.tweets).forEach(function (item) {
-            tweet = <IndividualTweet tweet = {props.tweets[item]["text"]} key={item} />
+            tweet = <IndividualTweet tweet = {props.tweets[item]["text"]} date={props.tweets[item]["created_at"]} key={item} />
             allTweets.push(tweet);
         });
 
         return (
             <div>
-                
                 {allTweets}
             </div>
         );

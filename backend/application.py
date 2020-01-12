@@ -1,7 +1,6 @@
 import os
 import requests, json
 from flask import Flask, session, render_template, request, jsonify
-from flask_session import Session
 
 from flask_cors import CORS, cross_origin
 from text_classification import Tweet

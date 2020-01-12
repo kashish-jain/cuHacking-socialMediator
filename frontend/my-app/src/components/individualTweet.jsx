@@ -6,6 +6,9 @@ import twitter from "./twitter.png";
 
 let IndividualTweet = (props) => {
     // const element = <FontAwesomeIcon icon={faTwitter} />
+    let finalDate = props.date;
+    let plusIndex = finalDate.indexOf("+");
+    finalDate = finalDate.substring(0, plusIndex);
     return (
         <div style={{display:'inline',fontSize:'1.5rem'}}>
             
@@ -16,10 +19,10 @@ let IndividualTweet = (props) => {
                     <Card.Text>
                     {props.tweet}
                     </Card.Text>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
+                    {/* <Card.Link href="#">Card Link</Card.Link>
+                    <Card.Link href="#">Another Link</Card.Link> */}
                     <footer className="blockquote-footer" style={{textAlign:"right"}}>
-                        2 <cite title="Source Title">Days ago </cite>
+                <cite title="Source Title">{finalDate}</cite>
                     </footer>
                 </Card.Body>
             </Card>

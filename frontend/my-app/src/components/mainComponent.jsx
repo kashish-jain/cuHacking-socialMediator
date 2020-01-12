@@ -21,9 +21,6 @@ class MainComponent extends Component {
         console.log("graphObj", graphObj);
         return (
             <div className="main">
-                <div className="bank-img">
-                    <img src={bank} alt="" srcSet="" />
-                </div>
                 <div className="page-title">
                     <h1
                         style={{

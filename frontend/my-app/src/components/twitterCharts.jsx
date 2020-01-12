@@ -14,8 +14,10 @@ function getScores(values) {
 function getDates(values) {
     let data = [];
     Object.keys(values).forEach(function (item) {
-        let tweet = values[item]["created_at"];
-        data.push(tweet);
+        let date = values[item]["created_at"];
+        let plusIndex = date.indexOf("+");
+        date = date.substring(0, plusIndex);
+        data.push(date);
     });
     return data;
 }

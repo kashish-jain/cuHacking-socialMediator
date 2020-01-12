@@ -6,10 +6,10 @@ from google.cloud.language_v1 import enums
 TECH = ['/Internet', '/Autos', '/Computers']
 class Tweet(object):
     def __init__(self, tweet_text):
-        self.tweet_type = 'Non-technical'
+        self.tweet_type = 'Technical'
         self.sentiment_score = 0
         self.tweet_text = tweet_text
-        self.classify(tweet_text)
+        self.sample_classify_text(tweet_text)
         self.analyze(tweet_text)
     
     def classify(self, text, verbose=True):
@@ -37,9 +37,7 @@ class Tweet(object):
                     print(u'=' * 20)
                     print(u'{:<16}: {}'.format('category', category.name))
                     print(u'{:<16}: {}'.format('confidence', category.confidence))
-                    if category.name.split()[0] in TECH:
-                        self.tweet_type = 'Technical'
-                    else:
+                    if category.name.split()[0] not in TECH:
                         self.tweet_type = 'Non-technical'
 
             return result
@@ -68,6 +66,7 @@ class Tweet(object):
         document = {"content": text_content, "type": type_, "language": language}
 
         response = client.classify_text(document)
+        print(response.categories)
         # Loop through classified categories returned from the API
         for category in response.categories:
             # Get the name of the category representing the document.
@@ -78,9 +77,8 @@ class Tweet(object):
             # is that this category represents the provided text.
             # print(u"Confidence: {}".format(category.confidence))
             # Set tweet type
-            if category.name.split()[0] in TECH:
-                self.tweet_type = 'Technical'
-            else:
+            print(category.name)
+            if category.name.split()[0] not in TECH:
                 self.tweet_type = 'Non-technical'
 
     def print_result(self, annotations):

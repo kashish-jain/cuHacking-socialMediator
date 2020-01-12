@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import IndividualTweet from './individualTweet';
 
 let Tweets = (props) => {
+    // const element = <FontAwesomeIcon icon={faTwitter} />
+
         let tweet;
         let allTweets = [];
         Object.keys(props.tweets).forEach(function (item) {
@@ -12,6 +14,7 @@ let Tweets = (props) => {
 
         return (
             <div>
+                
                 {allTweets}
             </div>
         );

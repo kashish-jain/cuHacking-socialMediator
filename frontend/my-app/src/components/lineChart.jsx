@@ -15,8 +15,10 @@ class LineChart extends Component {
                         borderColor:'rgb(170, 170, 171)',
                         borderWidth: 1.5
                         
+                        
                     }
-                ],
+                ]
+                
             }
         }
     }

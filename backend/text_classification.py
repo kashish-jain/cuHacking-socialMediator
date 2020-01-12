@@ -109,4 +109,4 @@ class Tweet(object):
             score = annotations.document_sentiment.score
             self.print_result(annotations)
         except Exception as e:
-            return 
+            return

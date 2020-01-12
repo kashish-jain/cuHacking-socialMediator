@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './components/mainComponent';
+import MainComponent from './components/mainComponent';
 const API = 'http://127.0.0.1:5000/';
 
 class App extends Component {
@@ -25,7 +27,6 @@ class App extends Component {
     .then(function(jsonStr) {
         that.setState({ apiInfo: jsonStr });
     });
-    console.log(this.state)
   }
 
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 id="display">Display some text {result}</h1>
+        <MainComponent/>
       </div>
     );
   }

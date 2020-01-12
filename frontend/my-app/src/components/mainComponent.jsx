@@ -10,8 +10,16 @@ function graphObjects(bigJson) {
     let newObject = JSON.parse(bigJson);
     const values = Object.values(newObject);
     // Returning array of JSON Objects
-    console.log("mainComponent", values);
     return values;
+}
+
+function getLocations(graphObj) {
+    let locationsArray = [];
+    graphObj.forEach((item) => {
+        let loca = item["geolocation"];
+        locationsArray.push(loca);
+    });
+    return locationsArray;
 }
 
 class MainComponent extends Component {
@@ -20,6 +28,8 @@ class MainComponent extends Component {
     }
     render() {
         let graphObj = graphObjects(this.props.bigData);
+        let locationsArray = getLocations(graphObj);
+        console.log("here is ht fskufh ", locationsArray);
         return (
             <div className="main">
                 <div className="page-title">
@@ -40,7 +50,7 @@ class MainComponent extends Component {
                     <Tweets tweets={graphObj} />
                     <Alerts />
                     <Post />
-                    <SimpleMap/>        
+                    {/* <SimpleMap locations={locationsArray}/> */}
                 </div>
             </div>
         );

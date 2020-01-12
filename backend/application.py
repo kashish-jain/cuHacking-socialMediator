@@ -10,6 +10,23 @@ from text_classification import Tweet
 # tweet = Tweet("The RBC mobile app was not working yesterday. I tried clicking on buttons but it never works. They need to fix their app!!")
 # print(tweet.tweet_type)
 
+labels = {"atm":["atm", "automated teller machine", "machine"], "calls":["call", "voice", "contact"], "software": ["bug","screen", "breaks", "404", "online", "website", "app"], "hours": ["timing", "closed", "holiday"]}
+def labelling(string):
+    string = string.lower()
+    for label in labels:
+        for word in labels[label]:
+            if string.find(word):
+                return label
+    return "none"
+
+def prioritize(score, label):
+    if (label == "none"):
+        if (score < -0.5):
+            return "high"
+        elif (score < 0) :
+            return "medium"
+    return "low"
+        
 def read_tweet_file():
     tweets_dict = {}
     file = open("./Twitter/tweets.txt", "r")
@@ -31,6 +48,9 @@ def read_tweet_file():
 
         tweet_dict["sentiment_score"] = tweet_data.sentiment_score
         tweet_dict["category"] = tweet_data.tweet_type
+        tweet_dict["label"] = labelling(tweet_obj["text"])
+        tweet_dict["priority"] = prioritize(tweet_dict["sentiment_score"],tweet_dict["label"])
+        
         tweets_dict[str(i)] = tweet_dict
         i = i + 1
         

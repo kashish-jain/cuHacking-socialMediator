@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './components/mainComponent';
+import MainComponent from './components/mainComponent';
 const API = 'http://127.0.0.1:5000/';
 
 class App extends Component {
@@ -10,31 +12,33 @@ class App extends Component {
       apiInfo: 'default'
     };
   }
-  componentDidMount() {
-    // fetch(API)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ hits: data.hits }));
+  componentWillMount() {
     const that = this
     fetch(API)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(jsonData) {
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (jsonData) {
         return JSON.stringify(jsonData);
-    })
-    .then(function(jsonStr) {
+      })
+      .then(function (jsonStr) {
         that.setState({ apiInfo: jsonStr });
-    });
-    console.log(this.state)
+      });
   }
 
   render() {
-    let result = this.state.apiInfo
-    console.log(result)
-    return (
-      <div className="App">
-        <h1 id="display">Display some text {result}</h1>
+    let main;
+    if (this.state.apiInfo != "default") {
+      main = <div className="App">
+        <MainComponent bigData={this.state.apiInfo} />
       </div>
+    } else {
+      main = <div className="App">
+      Loading
+    </div>
+    }
+    return (
+      main
     );
   }
 }
